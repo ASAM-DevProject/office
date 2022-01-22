@@ -1,0 +1,55 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12 p-5">
+                    {{form.username|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.password1|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.password2|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.first_name|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.last_name|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.national_code|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.birth_certificate_code|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.father_name|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.province_of_residence|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.phone_number|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.image_profile|as_crispy_field}}
+                </div>
+            </div>
+            <button class="btn btn-success">ثبت نام</button>
+        </form>
+    </div>
+</body>
+</html>

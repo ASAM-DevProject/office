@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if user.is_authenticated and user.is_sick == True %}
+        {{sicks.first_name}}<br>
+        {{sicks.last_name}}<br>
+        {{sicks.national_code}}<br>
+        {{sicks.birth_certificate_code}}<br>
+        {{sicks.father_name}}<br>
+        {{sicks.province_of_residence}}<br>
+        {{sicks.phone_number}}<br>
+        {{sicks.image_profile}}<br>
+    {% elif user.is_authenticated and user.is_doctor == True %}
+        {{sicks.first_name}}<br>
+        {{sicks.last_name}}<br>
+        {{sicks.address_office}}<br>
+        {{sicks.expertise}}<br>
+        {{sicks.telphone_number_office}}<br>
+        {{sicks.image_profile}}<br>
+    {% endif %}
+</body>
+</html>

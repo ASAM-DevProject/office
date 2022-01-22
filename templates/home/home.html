@@ -1,0 +1,325 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href='https://cdn.fontcdn.ir/Font/Persian/Sahel/Sahel.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="{% static 'home/css/css_login.css' %}">
+    <title>مطب</title>
+    <style>
+        body{
+           font-family: myfont;
+           src: url(https://cdn.fontcdn.ir/Font/Persian/Sahel/Sahel.css);
+           margin: 15px;
+        }
+    </style>
+</head>
+<body style="background-color:#e7f4fd">
+
+    
+   
+    <div class="container">
+        <div class="row" >
+            <div class="col" >
+                 <!-- <img src="images/doctor.jpg" class="img-fluid" alt="doctor">  -->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light head-nav" style="background-image:url({% static 'home/images/doctor.jpg' %});">
+                        <div class="container-fluid">
+                        {% if user.is_authenticated %}
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                            <li class="nav-item dropdown" style="margin-right: 80px;">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: blue; font-size: 20px; ">
+                                    <i class="bi bi-person-circle"></i>
+                                </a>
+                                <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                                    <hr class="mt-0 mb-0">
+                                    <li><p class="dropdown-item">{{user.username}}</p></li>
+                                    <li><a class="dropdown-item" href="{% url 'account:profile' %}">پروفایل</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">خروج</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        {% else %}
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                            <li class="nav-item dropdown" style="margin-right: 80px;">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: blue; font-size: 20px; ">
+                                    <i class="bi bi-person-circle" style="color: black;"></i>
+                                </a>
+                                <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                                   
+                                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#login">ورود</a></li>
+                                </ul>
+                            </li>
+                        </ul> 
+                        {% endif %}
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: blue; font-size: 20px; ">
+                                    مشاوره آنلاین پزشکی
+                                    </a>
+                                    <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">دکتر آنلاین مغز و اعصاب</a></li>
+                                   
+                                    <li><a class="dropdown-item" href="#">دکتر آنلاین روان شناس</a></li>
+                                   
+                                    <!-- <li><hr class="dropdown-divider"></li> -->
+                                    <li><a class="dropdown-item" href="#">دکتر آنلاین عمومی</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link  dropdown-toggle" href="#" id="navbarDropdown" style="color: blue;font-size: 20px; " role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    بیمار 
+                                    </a>
+                                    <ul class="dropdown-menu text-end" aria-labelledby="navbarDropdown">
+                                        <!-- <li><a class="dropdown-item" href="#">جستجو پزشک و دریافت نوبت</a></li>
+                                        
+                                        <li><a class="dropdown-item" href="#">نوبت من</a></li> -->
+                                       
+                                        <!-- <li><hr class="dropdown-divider"></li> -->
+                                        
+                                        <li><a class="dropdown-item " href="{% url 'account:signup-sick' %}" >ثبت نام <i class="bi bi-person-fill" style="margin-right: 5px;"></i></a></li>
+                                        <!-- <li><a class="dropdown-item " href="#" >دریافت نوبت<i class="bi bi-patch-plus-fill" style="margin-right: 5px;"></i></i></a></li> -->
+                                        
+                                        <!-- <li><a class="dropdown-item" href="#">ثبت نام</a></li> -->
+                                        
+                                        <li><a class="dropdown-item" href="#">خدمات پاراکلینیکی<i class="bi bi-building " style="margin-right: 5px;"></i></a></li>
+                                       
+                                        <!-- <li><a class="dropdown-item" href="#">راهنمای دریافت نوبت</a></li> -->
+                                    </ul>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link  " href="#" id="navbarDropdown" style="color: blue;font-size: 20px; " role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    دریافت نوبت <i class="bi bi-plus-square-fill"></i></i>
+                                    </a>
+                                    
+                                </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" style="color: blue;font-size: 20px; margin-left: 80px; " id="navbarDropdown"  data-bs-toggle="dropdown" aria-expanded="false">
+                                پزشک 
+                                </a>
+                                <ul class="dropdown-menu text-end" aria-labelledby="navbarDropdown">
+                                <!-- <li><a class="dropdown-item" href="#">جستجو پزشک و دریافت نوبت</a></li>
+                                <li><a class="dropdown-item" href="#">نوبت من</a></li> -->
+                                <!-- <li><hr class="dropdown-divider"></li> -->
+                                <!-- <li><a class="dropdown-item" href="#" >ورود<i class="bi bi-person-fill" style="margin-right: 5px;"></i></a></li> -->
+                                <li><a class="dropdown-item" href="{% url 'account:signup-doctor' %}" >ثبت نام<i class="bi bi-person-fill" style="margin-right: 5px;"></i></a></li>
+                                
+                                <!-- <li><a class="dropdown-item" href="#">ثبت نام</a></li> -->
+                                <!-- <li><a class="dropdown-item" href="#">خدمات پاراکلینیکی</a></li>
+                                <li><a class="dropdown-item" href="#">راهنمای دریافت نوبت</a></li> -->
+                                </ul>
+                            </li>
+                            </ul>
+                            <form class="d-flex"">
+                            <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button> -->
+                            </form>
+                        </div>
+                        </div>
+                    </nav>
+                     <img src="{% static 'home/images/doctor.jpg' %}" class="img-fluid" alt="doctor">
+            
+            </div>
+        </div>
+    </div>
+
+        <!-- <div class="row">
+            <div class="col">
+                <img src="images/doctor.jpg" class="img-fluid" alt="doctor">
+            </div>
+            <div class="col-4">
+
+            </div> -->
+        <!-- </div> --> 
+    <!-- </div> -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                                        <!-- Footer -->
+            <footer class="bg-light text-center text-dark">
+                <!-- Grid container -->
+                <div class="container p-4">
+                <!-- Section: Social media -->
+                <section class="mb-4">
+                    <!-- Facebook -->
+                    <a class="btn btn-outline-primary btn-floating m-1" href="facebook/example_office" role="button"
+                    ><i class="bi bi-facebook"></i></a>
+            
+                    <!-- Twitter -->
+                    <a class="btn btn-outline-info btn-floating m-1" href="twitter/example_office" role="button"
+                    ><i class="bi bi-twitter"></i></a>
+            
+                    <!-- Google -->
+                    <a class="btn btn-outline-warning btn-floating m-1" href="google/example_office" role="button"
+                    ><i class="bi bi-google"></i></a>
+            
+                    <!-- Instagram -->
+                    <a class="btn btn-outline-danger btn-floating m-1" href="instagram/example_office" role="button"
+                    ><i class="bi bi-instagram"></i></a>
+            
+                    <!-- Linkedin -->
+                    <!-- <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"
+                    ><i class="bi bi-linkedin"></i></a> -->
+            
+                    <!-- Github -->
+                    <!-- <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"
+                    ><i class="bi bi-github"></i></a> -->
+                </section>
+                <!-- Section: Social media -->
+            
+                
+                <!-- Section: Form -->
+               
+                <!-- Section: Form -->
+            
+                <!-- Section: Text -->
+                <section class="mb-4">
+                    <p>
+                    ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                    </p>
+                </section>
+                <!-- Section: Text -->
+            
+                <!-- Section: Links -->
+                <section class="">
+                    <!--Grid row-->
+                    <div class="row">
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0 " style="font-size: 14px;">
+                        <h5 class="text-uppercase ">دسته بندی</h5>
+            
+                        <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="{% url 'account:signup-doctor' %}" class="text-dark ">پزشک (ثبت نام)</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'login' %}" class="text-dark ">پزشک (ورود)</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-dark">بیمار (نوبت گرفتن)</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'account:signup-sick' %}" class="text-dark">بیمار (ثبت نام)</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'login' %}" class="text-dark">بیمار (ثبت ورود)</a>
+                        </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+            
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0"style="font-size: 14px;">
+                        <h5 class="text-uppercase " style="color: black;">ارتباط با ما</h5>
+                        <ul class="list-unstyled mb-0" style="color: chocolate">
+                        <li>
+                            
+                            <i class="bi bi-geo-alt"></i>
+                            <span href="#!" class="text-dark" >یزد - بلوار طالقانی</span>
+                            
+                        </li>
+                    
+                        <li>
+                            <div>
+                            <i class="bi bi-telephone"></i>
+                            <span href="#!" class="text-dark">09130000000</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <span href="#!" class="text-dark">info@gmail.com</span>
+                        </li>
+                        <!-- <li>
+                            <a href="#!" class="text-dark">Link 4</a>
+                        </li> -->
+                        </ul>
+                    </div>
+                    
+                    <!--Grid column-->
+            
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <img src="{% static 'home/images/logo.png' %}" class="img-fluid" alt="doctor" style="width: 140px;height:140px ;">
+
+                    </div>
+                    <!--Grid column-->
+            
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <img src="{% static 'home/images/namad.png' %}" class="img-fluid" alt="doctor" style="width: 150px;height:150px ;">
+                    </div>
+                    <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </section>
+                <!-- Section: Links -->
+                </div>
+                <!-- Grid container -->
+            
+                <!-- Copyright -->
+                <div class="text-center p-3 copy-foot" style="background-color: rgba(6, 176, 255, 0.473);">
+                تمامی حقوق سایت مربوط به شرکت رابو است.
+                <!-- <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a> -->
+                </div>
+                <!-- Copyright -->
+            </footer>
+            <!-- Footer -->
+            </div>
+        </div>
+    </div>
+    
+
+
+
+ <!-- Modal -->
+ <div class="modal fade" data-bs-backdrop="static" dir="ltr" data-bs-keyboard="false" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="font-size: 30px; margin-left: 40px;" id="exampleModalLabel">ورود</h5>
+          <button type="button"  class="btn-close align-items-start" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+
+            <div class="wrapper" style="margin-top: 10px;margin-bottom: 10px;">
+                <div class="logo"> <img src="{% static 'home/images/R.jpg' %}" alt=""> </div>
+                <div class="text-center mt-4 name">  </div>
+                <form class="p-3 mt-3" action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type="text" name="username" id="userName" placeholder="نام کاربری"> </div>
+                    <div class="form-field d-flex align-items-center"> <span class="fas fa-key "></span> <input type="password" name="password" id="pwd" placeholder="رمز عبور"> </div> <button type="submit" class="btn mt-3">ورود</button>
+                </form>
+                <div class="text-center fs-6"> <a href="{% url 'password_reset' %}" style="font-size:15px;">رمز خود را فراموش کردید؟</a> یا  <a href="#"style="font-size:15px;">ثبت نام</a> </div>
+            </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
